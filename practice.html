@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Practice | Synthetic Data in Health Research</title>
+<meta name="description" content="Practice questions on synthetic data methods and evaluation.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>(()=>{try{const s=localStorage.getItem("sd-theme");document.documentElement.dataset.theme=s||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme="light"}})();</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="top">
+  <nav class="nav-shell" aria-label="Main navigation">
+    <a class="brand" href="index.html" aria-label="Synthetic Data in Health Research home"><span class="brand-mark">SD</span><span><strong>Synthetic Data</strong><small>in Health Research</small></span></a>
+    <!--nav--><div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="fundamentals.html">Fundamentals</a><a href="methods.html" aria-current="true">Methods</a><a href="regulatory.html">Regulatory</a><div class="nav-drop"><a href="ecliptica.html">Ecliptica<span class="caret" aria-hidden="true">▾</span></a><div class="nav-menu"><p class="nav-menu-title">Applications of Synthetic Data: Case Studies using Ecliptica</p><a href="ecliptica.html#install">Introduction to Ecliptica, download and install</a><a href="ecliptica.html#trial-simulation">Using Ecliptica for clinical trial simulation &amp; PK/PD</a><a href="ecliptica.html#external-control">External control arms</a></div></div><div class="nav-drop"><a href="real-world.html">RWD &amp; HTA<span class="caret" aria-hidden="true">▾</span></a><div class="nav-menu"><p class="nav-menu-title">Applications of Synthetic Data</p><a href="real-world.html#tte">Real World Data: Target Trial Emulation &amp; Digital Twins Example</a><a href="real-world.html#hta">Health Technology Assessment for JCA</a></div></div><a href="future.html">Future directions</a></div><!--/nav-->
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span><span class="theme-label" id="themeLabel">Dark</span></button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation menu" aria-controls="navLinks" aria-expanded="false">☰</button>
+    </div>
+  </nav>
+</header>
+<main id="main">
+
+<div class="wrapper page-top">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="methods.html">Session 2 · Methods</a><span>›</span><span>Practice</span></nav>
+  <section class="page-banner reveal">
+    <p class="eyebrow">Practice library</p>
+    <h1>Fifteen questions. Check your reasoning.</h1>
+    <p>Short questions across the session. Try each one, use the hint only if you need it, and read the explanation afterwards.</p>
+    <div class="stage-line"><span class="active">Attempt</span><span>Hint if needed</span><span>Check</span><span>Explain</span></div>
+  </section>
+</div>
+
+<section class="section-pad compact section-landmark practice-landmark">
+  <div class="wrapper">
+    <div class="section-head reveal">
+      <div class="section-identity"><span class="identity-mark">01</span><span>Practice desk</span></div>
+      <p class="eyebrow">Choose a topic</p>
+      <h2>Test yourself on each part of the session</h2>
+      <p>Filter by part, answer, and keep an eye on your score.</p>
+    </div>
+    <div class="practice-toolbar reveal" id="quizFilters">
+      <span class="label">Topic</span>
+      <button class="chip" type="button" data-f="All" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-f="Fundamentals" aria-pressed="false">Fundamentals</button>
+      <button class="chip" type="button" data-f="Part 1" aria-pressed="false">Part 1</button>
+      <button class="chip" type="button" data-f="Part 2" aria-pressed="false">Part 2</button>
+      <button class="chip" type="button" data-f="Part 3" aria-pressed="false">Part 3</button>
+      <span class="score" id="score" aria-live="polite"></span>
+    </div>
+    <div id="quizList"></div>
+    <div class="practice-load-row"><button class="btn ghost" id="resetQuiz" type="button">Start again</button></div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrapper footer-grid">
+    <div>
+      <a class="brand" href="index.html"><span class="brand-mark">SD</span><span><strong>Synthetic Data</strong><small>in Health Research</small></span></a>
+      <p>Purpose → method → evaluation → documentation.</p>
+    </div>
+    <div><h4>Course companion</h4><p>Session 2: Methods for Generating Synthetic Data, Dr Saqib Ur Rehman.</p></div>
+    <div><h4>Hosted by</h4><p>Regulatory Scientific and Health Solutions (RSS)<br><a href="https://www.r-s-s.com">www.r-s-s.com</a></p></div>
+  </div>
+</footer>
+<script src="js/common.js"></script><script src="js/quiz.js"></script>
+</body>
+</html>

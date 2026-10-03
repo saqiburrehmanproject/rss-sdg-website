@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simulation lab | Synthetic Data in Health Research</title>
+<meta name="description" content="Interactive trial simulator and a comparison of synthetic data methods, running in the browser.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>(()=>{try{const s=localStorage.getItem("sd-theme");document.documentElement.dataset.theme=s||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme="light"}})();</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="top">
+  <nav class="nav-shell" aria-label="Main navigation">
+    <a class="brand" href="index.html" aria-label="Synthetic Data in Health Research home"><span class="brand-mark">SD</span><span><strong>Synthetic Data</strong><small>in Health Research</small></span></a>
+    <!--nav--><div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="fundamentals.html">Fundamentals</a><a href="methods.html" aria-current="true">Methods</a><a href="regulatory.html">Regulatory</a><div class="nav-drop"><a href="ecliptica.html">Ecliptica<span class="caret" aria-hidden="true">▾</span></a><div class="nav-menu"><p class="nav-menu-title">Applications of Synthetic Data: Case Studies using Ecliptica</p><a href="ecliptica.html#install">Introduction to Ecliptica, download and install</a><a href="ecliptica.html#trial-simulation">Using Ecliptica for clinical trial simulation &amp; PK/PD</a><a href="ecliptica.html#external-control">External control arms</a></div></div><div class="nav-drop"><a href="real-world.html">RWD &amp; HTA<span class="caret" aria-hidden="true">▾</span></a><div class="nav-menu"><p class="nav-menu-title">Applications of Synthetic Data</p><a href="real-world.html#tte">Real World Data: Target Trial Emulation &amp; Digital Twins Example</a><a href="real-world.html#hta">Health Technology Assessment for JCA</a></div></div><a href="future.html">Future directions</a></div><!--/nav-->
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span><span class="theme-label" id="themeLabel">Dark</span></button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation menu" aria-controls="navLinks" aria-expanded="false">☰</button>
+    </div>
+  </nav>
+</header>
+<main id="main">
+
+<div class="wrapper page-top">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="methods.html">Session 2 · Methods</a><span>›</span><span>Simulation lab</span></nav>
+  <section class="page-banner reveal">
+    <p class="eyebrow">Simulation laboratory</p>
+    <h1>Change the assumptions. Watch what responds.</h1>
+    <p>Two small experiments that run entirely in your browser. Start with the highlighted control, change one thing at a time, then decide what the evidence supports.</p>
+    <div class="stage-line" aria-label="Experiments"><a class="active" href="#trial">01 · Simulate a trial</a><a href="#synth">02 · Compare synthesizers</a></div>
+  </section>
+</div>
+
+<div class="wrapper">
+  <section class="sim-block" id="trial">
+    <div class="sim-intro reveal">
+      <div>
+        <p class="sim-step-label">Experiment 01 · Knowledge-driven simulation</p>
+        <h2>Simulate a two-arm survival trial</h2>
+        <p>No patient data needed: every patient is generated from the assumptions on the left. This is the method used for sample-size and design decisions.</p>
+      </div>
+      <div class="sim-stage-line"><span class="active">Assume</span><span>Simulate</span><span>Interpret</span><span>Decide</span></div>
+    </div>
+    <div class="lab">
+      <aside class="controls">
+        <p class="sim-step-label">Set the assumptions</p>
+        <h3>What do you believe about the trial?</h3>
+        <p>Every slider is an assumption. Move one and a new trial is generated.</p>
+        <div class="control"><label for="t_n">Sample size <output id="o_n"></output></label><input type="range" id="t_n" min="30" max="500" step="10" value="200"></div>
+        <div class="control"><label for="t_med">Placebo median survival <output id="o_med"></output></label><input type="range" id="t_med" min="3" max="24" step="1" value="8"></div>
+        <div class="control"><label for="t_hr">True hazard ratio <output id="o_hr"></output></label><input type="range" id="t_hr" min="0.5" max="1.2" step="0.05" value="0.75"><div class="hint">Below 1 means the active treatment lowers the risk.</div></div>
+        <div class="control"><label for="t_fu">Maximum follow-up <output id="o_fu"></output></label><input type="range" id="t_fu" min="6" max="36" step="1" value="24"></div>
+        <div class="control"><label for="t_drop">Dropout <output id="o_drop"></output></label><input type="range" id="t_drop" min="0" max="30" step="1" value="10"></div>
+        <div class="sim-action-row">
+          <button class="sim-btn primary" id="t_again" type="button">Simulate another trial</button>
+          <button class="sim-btn" id="t_power" type="button">Estimate power</button>
+        </div>
+      </aside>
+      <div>
+        <article class="chart-box">
+          <div class="chart-head"><div><p class="sim-step-label">Explore the evidence</p><h3>Kaplan–Meier curves</h3><div class="sim-legend"><span><i class="dot real"></i>Placebo</span><span><i class="dot synth"></i>Active</span></div></div></div>
+          <canvas id="trialCanvas" role="img" aria-label="Kaplan–Meier curves for placebo and active arms"></canvas>
+        </article>
+        <div class="stats">
+          <div class="stat"><div class="v" id="s_hr">–</div><div class="l">Estimated hazard ratio<br><span id="s_ci"></span></div></div>
+          <div class="stat"><div class="v" id="s_ev">–</div><div class="l">Events observed<br>Median (months): <span id="s_med"></span></div></div>
+          <div class="stat"><div class="v" id="s_power">–</div><div class="l">Power across repeated trials<br>Press “Estimate power”</div></div>
+        </div>
+        <div class="interpret"><small>Interpret</small><p id="t_interp" aria-live="polite"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sim-block" id="synth" style="--sim-accent:#2479c7;--sim-accent-2:#00a8a8">
+    <div class="sim-intro reveal">
+      <div>
+        <p class="sim-step-label">Experiment 02 · Fidelity versus privacy</p>
+        <h2>Compare three ways of making synthetic patients</h2>
+        <p>The rings are 250 real patients (a teaching dataset). The filled dots are 250 synthetic patients made by the method you choose. The scores show fidelity and privacy pulling against each other.</p>
+      </div>
+      <div class="sim-stage-line"><span class="active">Choose</span><span>Generate</span><span>Compare</span><span>Decide</span></div>
+    </div>
+    <div class="lab">
+      <aside class="controls">
+        <p class="sim-step-label">Choose a method</p>
+        <h3>How should the patients be generated?</h3>
+        <div class="control"><label>Method</label>
+          <div class="seg" id="methodSeg" role="group" aria-label="Synthesis method">
+            <button type="button" data-m="independent" aria-pressed="false">Independent</button>
+            <button type="button" data-m="copula" aria-pressed="true">Copula</button>
+            <button type="button" data-m="bootstrap" aria-pressed="false">Bootstrap</button>
+          </div>
+          <div class="hint">Independent: each column on its own. Copula: columns plus their correlation. Bootstrap: real rows plus noise.</div>
+        </div>
+        <div class="control" id="noiseCtl" hidden><label for="c_noise">Noise added <output id="o_noise"></output></label><input type="range" id="c_noise" min="0" max="0.5" step="0.01" value="0.01"></div>
+        <div class="control checks"><label><input type="checkbox" id="c_real" checked> Show real patients</label><label><input type="checkbox" id="c_syn" checked> Show synthetic patients</label></div>
+        <div class="sim-action-row"><button class="sim-btn primary" id="c_again" type="button">Generate again</button></div>
+      </aside>
+      <div>
+        <article class="chart-box">
+          <div class="chart-head"><div><p class="sim-step-label">Explore the evidence</p><h3>Real and synthetic patients</h3><div class="sim-legend"><span><i class="dot" style="background:transparent;border:2px solid var(--real)"></i>Real</span><span><i class="dot synth"></i>Synthetic</span></div></div></div>
+          <canvas id="synCanvas" role="img" aria-label="Scatter plot comparing real and synthetic patients"></canvas>
+        </article>
+        <div class="stats">
+          <div class="stat"><div class="v" id="m_corr">–</div><div class="l">Correlation, synthetic vs real</div><div class="meter" id="mm_corr"><i></i></div></div>
+          <div class="stat"><div class="v" id="m_ks">–</div><div class="l">Difference in distributions (KS, lower is better)</div><div class="meter" id="mm_ks"><i></i></div></div>
+          <div class="stat"><div class="v" id="m_near">–</div><div class="l">Near-copies: closer to a real patient than real patients are to each other (lower is safer)</div><div class="meter" id="mm_near"><i></i></div></div>
+        </div>
+        <div class="interpret"><small>Interpret</small><p id="c_interp" aria-live="polite"></p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="wrapper footer-grid">
+    <div>
+      <a class="brand" href="index.html"><span class="brand-mark">SD</span><span><strong>Synthetic Data</strong><small>in Health Research</small></span></a>
+      <p>Purpose → method → evaluation → documentation.</p>
+    </div>
+    <div><h4>Course companion</h4><p>Session 2: Methods for Generating Synthetic Data, Dr Saqib Ur Rehman.</p></div>
+    <div><h4>Hosted by</h4><p>Regulatory Scientific and Health Solutions (RSS)<br><a href="https://www.r-s-s.com">www.r-s-s.com</a></p></div>
+  </div>
+</footer>
+<script src="js/common.js"></script><script src="js/synth.js"></script><script src="js/lab.js"></script>
+</body>
+</html>

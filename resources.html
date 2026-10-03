@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Slides &amp; resources | Synthetic Data in Health Research</title>
+<meta name="description" content="Session slides, tools and glossary for the synthetic data course.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>(()=>{try{const s=localStorage.getItem("sd-theme");document.documentElement.dataset.theme=s||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme="light"}})();</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="top">
+  <nav class="nav-shell" aria-label="Main navigation">
+    <a class="brand" href="index.html" aria-label="Synthetic Data in Health Research home"><span class="brand-mark">SD</span><span><strong>Synthetic Data</strong><small>in Health Research</small></span></a>
+    <!--nav--><div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="fundamentals.html">Fundamentals</a><a href="methods.html" aria-current="true">Methods</a><a href="regulatory.html">Regulatory</a><div class="nav-drop"><a href="ecliptica.html">Ecliptica<span class="caret" aria-hidden="true">▾</span></a><div class="nav-menu"><p class="nav-menu-title">Applications of Synthetic Data: Case Studies using Ecliptica</p><a href="ecliptica.html#install">Introduction to Ecliptica, download and install</a><a href="ecliptica.html#trial-simulation">Using Ecliptica for clinical trial simulation &amp; PK/PD</a><a href="ecliptica.html#external-control">External control arms</a></div></div><div class="nav-drop"><a href="real-world.html">RWD &amp; HTA<span class="caret" aria-hidden="true">▾</span></a><div class="nav-menu"><p class="nav-menu-title">Applications of Synthetic Data</p><a href="real-world.html#tte">Real World Data: Target Trial Emulation &amp; Digital Twins Example</a><a href="real-world.html#hta">Health Technology Assessment for JCA</a></div></div><a href="future.html">Future directions</a></div><!--/nav-->
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span><span class="theme-label" id="themeLabel">Dark</span></button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation menu" aria-controls="navLinks" aria-expanded="false">☰</button>
+    </div>
+  </nav>
+</header>
+<main id="main">
+
+<div class="wrapper page-top">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="methods.html">Session 2 · Methods</a><span>›</span><span>Slides &amp; resources</span></nav>
+  <section class="page-banner reveal">
+    <p class="eyebrow">Slides and resources</p>
+    <h1>Everything to take away.</h1>
+    <p>Download the session slides and find the tools and terms used in the course.</p>
+    <div class="stage-line"><a class="active" href="#slides">Slides</a><a href="#tools">Tools</a><a href="#glossary">Glossary</a></div>
+  </section>
+</div>
+
+<section class="wrapper section-pad compact section-landmark field-landmark full-bleed" id="slides">
+  <div class="section-head reveal">
+    <div class="section-identity"><span class="identity-mark">01</span><span>Slides</span></div>
+    <p class="eyebrow">Downloads</p>
+    <h2>Session slides</h2>
+    <p>Slides and handouts from every session, ready to download.</p>
+  </div>
+  <div class="case-grid two" data-materials="resources">
+    <article class="case-card dl-card reveal"><div class="case-card-top"><span class="case-number">SESSION 02</span><span class="tag amber">Draft</span></div><h3>Methods for generating synthetic data</h3><p>29 slides in three parts, with speaker notes.</p><a class="btn primary" href="slides/Session2_Methods_for_Generating_Synthetic_Data_DRAFT.pptx" download>Download slides <span class="file-ext">PPTX</span></a></article>
+    <article class="case-card dl-card reveal delay-1"><div class="case-card-top"><span class="case-number">SESSION 01</span><span class="tag amber">Draft</span></div><h3>Fundamentals of synthetic data: contributed slides</h3><p>Six optional slides for Session 1.</p><a class="btn" href="slides/Session1_Fundamentals_contributed_slides_DRAFT.pptx" download>Download slides <span class="file-ext">PPTX</span></a></article>
+  </div>
+</section>
+
+<section class="section-pad section-landmark software-landmark" id="tools">
+  <div class="wrapper">
+    <div class="section-head reveal">
+      <div class="section-identity"><span class="identity-mark">02</span><span>Software</span></div>
+      <p class="eyebrow">Tools</p>
+      <h2>Open-source tools used in the course</h2>
+      <p>Start with one tool, run it on a small dataset, then evaluate the output before trusting it.</p>
+    </div>
+    <div class="software-choice-grid reveal">
+      <article><span class="choice-icon">Py</span><div><strong><a href="https://docs.sdv.dev/">Synthetic Data Vault (SDV)</a></strong><p>Python library with Gaussian copula, CTGAN, TVAE and evaluation reports.</p></div></article>
+      <article><span class="choice-icon">R</span><div><strong><a href="https://www.synthpop.org.uk/">synthpop</a></strong><p>R package for sequential CART and parametric synthesis.</p></div></article>
+      <article><span class="choice-icon">R</span><div><strong><a href="https://cran.r-project.org/package=simstudy">simstudy</a></strong><p>R package for simulating study and trial data from assumptions.</p></div></article>
+      <article><span class="choice-icon">Jv</span><div><strong><a href="https://synthetichealth.github.io/synthea/">Synthea</a></strong><p>Open-source generator of synthetic patient records.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="wrapper section-pad section-landmark learning-landmark" id="glossary" data-watermark="A – Z">
+  <div class="section-head reveal">
+    <div class="section-identity"><span class="identity-mark">03</span><span>Glossary</span></div>
+    <p class="eyebrow">Key terms</p>
+    <h2>The words you will hear today</h2>
+    <p>Fifteen terms, in the order they come up in the session.</p>
+  </div>
+  <dl class="glossary reveal">
+    <div class="term"><dt>Synthetic data</dt><dd>Generated data that reproduces the patterns of real data without being a record of any real person.</dd></div>
+    <div class="term"><dt>Marginal distribution</dt><dd>The shape of a single variable on its own, such as the spread of ages.</dd></div>
+    <div class="term"><dt>Copula</dt><dd>A way of joining separate variable shapes together with a chosen dependence structure.</dd></div>
+    <div class="term"><dt>CART</dt><dd>Classification and regression trees; used in synthpop to generate each variable from those before it.</dd></div>
+    <div class="term"><dt>GAN</dt><dd>Generative adversarial network: a generator and a discriminator trained against each other.</dd></div>
+    <div class="term"><dt>VAE</dt><dd>Variational autoencoder: compresses records into a small summary and learns to rebuild them.</dd></div>
+    <div class="term"><dt>Diffusion model</dt><dd>Learns to reverse a step-by-step noising process to create new records.</dd></div>
+    <div class="term"><dt>Mode collapse</dt><dd>When a generator produces only common patterns and misses rare ones.</dd></div>
+    <div class="term"><dt>Fidelity</dt><dd>How closely synthetic data resemble the real data.</dd></div>
+    <div class="term"><dt>Utility</dt><dd>Whether analyses on synthetic data give the same answers as on real data.</dd></div>
+    <div class="term"><dt>TSTR</dt><dd>Train on synthetic, test on real: a utility check for prediction models.</dd></div>
+    <div class="term"><dt>Distance to closest record</dt><dd>How near each synthetic record is to its nearest real record; very small distances suggest copies.</dd></div>
+    <div class="term"><dt>Membership inference</dt><dd>An attack that tries to tell whether a specific person was in the training data.</dd></div>
+    <div class="term"><dt>Differential privacy</dt><dd>A mathematical guarantee that limits how much any one person can influence the output.</dd></div>
+    <div class="term"><dt>Censoring</dt><dd>In survival data, when a patient's event time is not observed, for example because follow-up ended.</dd></div>
+  </dl>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrapper footer-grid">
+    <div>
+      <a class="brand" href="index.html"><span class="brand-mark">SD</span><span><strong>Synthetic Data</strong><small>in Health Research</small></span></a>
+      <p>Purpose → method → evaluation → documentation.</p>
+    </div>
+    <div><h4>Course companion</h4><p>Session 2: Methods for Generating Synthetic Data, Dr Saqib Ur Rehman.</p></div>
+    <div><h4>Hosted by</h4><p>Regulatory Scientific and Health Solutions (RSS)<br><a href="https://www.r-s-s.com">www.r-s-s.com</a></p></div>
+  </div>
+</footer>
+<script src="js/common.js"></script>
+<script src="js/materials.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+# Pages CMS configuration (https://pagescms.org/docs)
+# The form the assistant uses to add slides, PDFs and links to the website.
+# Items are stored in data/materials.json and shown by js/materials.js.
+
+media:
+  input: assets/uploads
+  output: assets/uploads
+
+content:
+  - name: materials
+    label: Course materials
+    type: file
+    path: data/materials.json
+    format: json
+    fields:
+      - name: items
+        label: Materials
+        type: object
+        list: true
+        fields:
+          - name: page
+            label: Tab / Page
+            description: Where the material appears. Every item is also listed on the Slides & resources page.
+            type: select
+            required: true
+            default: resources
+            options:
+              values:
+                - value: resources
+                  label: Slides & resources page only
+                - value: fundamentals-overview
+                  label: "Session 1 · Fundamentals"
+                - value: regulatory-mhra
+                  label: "Session 3 · The MHRA perspective"
+                - value: regulatory-rss
+                  label: "Session 3 · Response from RSS"
+                - value: ecliptica-install
+                  label: "Session 4 · Ecliptica: introduction & install"
+                - value: ecliptica-trial-simulation
+                  label: "Session 4 · Ecliptica: trial simulation & PK/PD"
+                - value: ecliptica-external-control
+                  label: "Session 4 · Ecliptica: external control arms"
+                - value: real-world-tte
+                  label: "Session 5 · Target trial emulation & digital twins"
+                - value: real-world-hta
+                  label: "Session 5 · Health technology assessment for JCA"
+                - value: future-discussion
+                  label: "Session 6 · Future directions"
+          - name: title
+            label: Title
+            type: string
+            required: true
+          - name: label
+            label: Label
+            description: Small label above the title, e.g. SESSION 03
+            type: string
+          - name: description
+            label: Description
+            type: text
+          - name: file
+            label: File
+            description: Upload the file here (max 20 MB). Leave empty if you use Link instead.
+            type: file
+          - name: link
+            label: Link
+            description: Only for large files kept on Google Drive or OneDrive. Otherwise leave empty.
+            type: string
+          - name: status
+            label: Status
+            type: select
+            default: Final
+            options:
+              values: [Draft, Final]
+          - name: published
+            label: Show on website
+            type: boolean
+            default: true

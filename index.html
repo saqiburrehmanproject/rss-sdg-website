@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Home | Synthetic Data in Health Research</title>
+<meta name="description" content="Companion site for a one-day course on synthetic data in health research: methods, simulations, method chooser and practice questions.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>(()=>{try{const s=localStorage.getItem("sd-theme");document.documentElement.dataset.theme=s||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){document.documentElement.dataset.theme="light"}})();</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="top">
+  <nav class="nav-shell" aria-label="Main navigation">
+    <a class="brand" href="index.html" aria-label="Synthetic Data in Health Research home"><span class="brand-mark">SD</span><span><strong>Synthetic Data</strong><small>in Health Research</small></span></a>
+    <!--nav--><div class="nav-links" id="navLinks"><a href="index.html" aria-current="page">Home</a><a href="fundamentals.html">Fundamentals</a><a href="methods.html">Methods</a><a href="regulatory.html">Regulatory</a><div class="nav-drop"><a href="ecliptica.html">Ecliptica<span class="caret" aria-hidden="true">▾</span></a><div class="nav-menu"><p class="nav-menu-title">Applications of Synthetic Data: Case Studies using Ecliptica</p><a href="ecliptica.html#install">Introduction to Ecliptica, download and install</a><a href="ecliptica.html#trial-simulation">Using Ecliptica for clinical trial simulation &amp; PK/PD</a><a href="ecliptica.html#external-control">External control arms</a></div></div><div class="nav-drop"><a href="real-world.html">RWD &amp; HTA<span class="caret" aria-hidden="true">▾</span></a><div class="nav-menu"><p class="nav-menu-title">Applications of Synthetic Data</p><a href="real-world.html#tte">Real World Data: Target Trial Emulation &amp; Digital Twins Example</a><a href="real-world.html#hta">Health Technology Assessment for JCA</a></div></div><a href="future.html">Future directions</a></div><!--/nav-->
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span><span class="theme-label" id="themeLabel">Dark</span></button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation menu" aria-controls="navLinks" aria-expanded="false">☰</button>
+    </div>
+  </nav>
+</header>
+<main id="main">
+
+<section class="hero section-pad">
+  <div class="hero-grid wrapper">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">One-day course for clinical, regulatory and HTA professionals</p>
+      <h1>Data that behaves like patients.</h1>
+      <p class="hero-text">…without being anyone. Synthetic data can speed up trial design, open up access to evidence and protect privacy. This companion site walks through how it is made, how to check it, and how to choose a method you can defend.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="lab.html">Open the simulation lab</a>
+        <a class="btn ghost" href="methods.html">Read the methods</a>
+        <a class="btn ghost" href="choose.html">Choose a method</a>
+      </div>
+      <div class="hero-ai-card" aria-label="Today's session">
+        <div class="session-tile" aria-hidden="true"><b>S2</b><small>10:45</small></div>
+        <div>
+          <strong>Session 2: Methods for generating synthetic data</strong>
+          <span>Dr Saqib Ur Rehman. Three parts of about 25 minutes: the methods toolbox, deep learning generators, and how to judge whether the data are good enough.</span>
+          <a class="text-link" href="methods.html">Read the session content →</a>
+        </div>
+      </div>
+      <div class="hero-stats" aria-label="Website features summary">
+        <div><strong>4</strong><span>method families</span></div>
+        <div><strong>2</strong><span>live simulations</span></div>
+        <div><strong>15</strong><span>practice questions</span></div>
+      </div>
+    </div>
+
+    <div class="hero-panel reveal delay-1">
+      <div class="glass-card overview-card">
+        <p class="overview-kicker">Try it before the theory</p>
+        <h2>Which points are real?</h2>
+        <p class="overview-intro" id="revealNote"></p>
+        <div class="hero-canvas"><canvas id="heroCanvas" aria-label="Scatter plot of patients' age against a biomarker; half the points are synthetic" role="img"></canvas></div>
+        <div class="hero-controls">
+          <div class="legend" id="heroLegend"></div>
+          <div class="btn-row">
+            <button class="btn primary small" id="revealBtn" type="button">Reveal which points are real</button>
+            <button class="btn small" id="againBtn" type="button">New patients</button>
+          </div>
+        </div>
+        <div class="overview-flow" aria-label="Workflow from purpose to documentation">
+          <span>Purpose</span><i aria-hidden="true">→</i><span>Method</span><i aria-hidden="true">→</i><span>Evaluate</span><i aria-hidden="true">→</i><span>Document</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-orb orb-one"></div>
+  <div class="hero-orb orb-two"></div>
+</section>
+
+<section class="wrapper section-pad compact section-landmark learning-landmark" id="what" data-watermark="real · synthetic">
+  <div class="section-head reveal">
+    <p class="eyebrow">What synthetic data is, and is not</p>
+    <h2>Patterns of real data, records of no one</h2>
+    <p>Artificially generated data that reproduces the patterns and statistical properties of real data, without being a record of any real person.</p>
+  </div>
+  <div class="path-grid">
+    <article class="path-card reveal"><span class="path-step">1</span><h3>Fully synthetic</h3><p>Every record is generated. Strongest privacy, but relies most on the quality of the generator.</p></article>
+    <article class="path-card reveal delay-1"><span class="path-step">2</span><h3>Partially synthetic</h3><p>Only the sensitive variables are replaced. The rest of the record stays real.</p></article>
+    <article class="path-card reveal delay-2"><span class="path-step">3</span><h3>Simulated</h3><p>Generated from assumptions or models, such as event rates or PK/PD equations, without learning from patient data.</p></article>
+  </div>
+  <h3 class="sub-head reveal">Three common misconceptions</h3>
+  <div class="myth-grid">
+    <div class="myth reveal"><div class="claim">“It is fake, so it is useless.”</div><div class="fact">It is useful when it reproduces the patterns a task needs, and that can be tested.</div></div>
+    <div class="myth reveal delay-1"><div class="claim">“It is always anonymous.”</div><div class="fact">Privacy must be measured. Poorly generated data can contain near-copies of real patients.</div></div>
+    <div class="myth reveal delay-2"><div class="claim">“It will replace clinical trials.”</div><div class="fact">It complements trials by supporting design, comparison and extrapolation.</div></div>
+  </div>
+</section>
+
+<section class="section-pad section-landmark practice-landmark" id="purpose">
+  <div class="wrapper">
+    <div class="section-head reveal">
+      <div class="section-identity"><span class="identity-mark">02</span><span>Purpose first</span></div>
+      <p class="eyebrow">Start with one question</p>
+      <h2>What must the data do?</h2>
+      <p>The purpose decides how realistic the data must be, which method to use and how you must check it. The bars show how much realism each purpose needs.</p>
+    </div>
+    <div class="purpose-grid">
+      <article class="purpose-card reveal"><span class="practice-index">Purpose 01</span><h3>Test and train</h3><p>Build and test code and pipelines without touching patient data.</p><div class="realism-wrap"><small>Realism needed: low</small><div class="realism" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div></div></article>
+      <article class="purpose-card reveal delay-1"><span class="practice-index">Purpose 02</span><h3>Design and simulate</h3><p>Explore trial designs, sample sizes and what-if scenarios before enrolment.</p><div class="realism-wrap"><small>Realism needed: medium</small><div class="realism" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></div></div></article>
+      <article class="purpose-card reveal delay-2"><span class="practice-index">Purpose 03</span><h3>Answer questions</h3><p>Reproduce the real analysis, such as a hazard ratio, so relationships must be preserved.</p><div class="realism-wrap"><small>Realism needed: high</small><div class="realism" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div></article>
+      <article class="purpose-card reveal delay-3"><span class="practice-index">Purpose 04</span><h3>Share safely</h3><p>Give collaborators data that behaves like the original while protecting individuals.</p><div class="realism-wrap"><small>Realism needed: high + privacy checks</small><div class="realism" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad section-landmark lab-landmark" id="lab">
+  <div class="wrapper">
+    <div class="section-head reveal">
+      <div class="section-identity"><span class="identity-mark">03</span><span>Experiment room</span></div>
+      <p class="eyebrow">Interactive simulation lab</p>
+      <h2>Test an idea before trusting a method</h2>
+      <p>Two experiments run in your browser: simulate a whole trial from assumptions, then compare three ways of generating synthetic patients.</p>
+    </div>
+    <div class="sim-launch-grid reveal">
+      <a class="sim-launch-feature" href="lab.html#synth">
+        <span class="sim-launch-label">Featured experiment</span>
+        <h3>When does realistic become too real?</h3>
+        <p>Switch between independent columns, a copula and a bootstrap, and watch fidelity rise while the share of near-copies of real patients climbs with it.</p>
+        <span class="sim-launch-action">Run the experiment →</span>
+      </a>
+      <div class="sim-launch-side">
+        <div class="sim-mini-plot" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p><strong>Assume → Simulate → Compare → Decide</strong><br>Change one setting at a time and read what responds.</p>
+        <a class="btn primary" href="lab.html">Open the simulation lab</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrapper section-pad section-landmark field-landmark full-bleed" id="families">
+  <div class="section-head reveal">
+    <div class="section-identity"><span class="identity-mark">04</span><span>Method families</span></div>
+    <p class="eyebrow">Four families of methods</p>
+    <h2>Start on the left. Move right only when you must.</h2>
+    <p>Move to a more flexible family only when the simpler method is not good enough for your purpose.</p>
+  </div>
+  <div class="case-grid">
+    <a class="case-card reveal" href="methods.html#simulation"><div class="case-card-top"><span class="case-number">FAMILY 01</span><span class="tag teal">No data needed</span></div><h3>Rules and simulation</h3><p>Build data from assumptions and known models.</p><span class="text-link">Read more →</span></a>
+    <a class="case-card reveal delay-1" href="methods.html#resampling"><div class="case-card-top"><span class="case-number">FAMILY 02</span><span class="tag amber">Quick</span></div><h3>Resampling</h3><p>Reuse and perturb real records: bootstrap, noise, SMOTE.</p><span class="text-link">Read more →</span></a>
+    <a class="case-card reveal delay-2" href="methods.html#copula"><div class="case-card-top"><span class="case-number">FAMILY 03</span><span class="tag green">Best baseline</span></div><h3>Statistical models</h3><p>Learn distributions and correlations: copulas, Bayesian networks, CART.</p><span class="text-link">Read more →</span></a>
+    <a class="case-card reveal delay-3" href="methods.html#gans"><div class="case-card-top"><span class="case-number">FAMILY 04</span><span class="tag purple">Complex data</span></div><h3>Deep learning</h3><p>Learn complex patterns: GANs, VAEs, diffusion, transformers.</p><span class="text-link">Read more →</span></a>
+  </div>
+  <div class="spectrum-scale reveal" aria-hidden="true">
+    <div class="scale-bar"></div>
+    <div class="scale-labels"><span>More transparent, needs less data, easier to explain</span><span>More flexible, needs more data, harder to explain</span></div>
+  </div>
+</section>
+
+<section class="section-pad section-landmark software-landmark" id="agenda">
+  <div class="wrapper">
+    <div class="section-head reveal">
+      <div class="section-identity"><span class="identity-mark">05</span><span>Course day</span></div>
+      <p class="eyebrow">The programme</p>
+      <h2>From fundamentals to future directions in one day</h2>
+      <p>Timings are approximate and may shift on the day.</p>
+    </div>
+    <div class="software-guide reveal">
+      <div class="software-guide-copy">
+        <span class="guide-label">This site covers</span>
+        <h3>Session 2: Methods for generating synthetic data</h3>
+        <p>10:45 to 12:00 with Dr Saqib Ur Rehman. Everything in the session, plus simulations, a method chooser and practice questions, is on this site.</p>
+        <a class="btn" href="methods.html">Go to the session content</a>
+      </div>
+      <ol class="agenda">
+        <li class="break"><time>09:00–09:30</time><div>Registration and networking</div></li>
+        <li><time>09:30–10:30</time><div><strong><a href="fundamentals.html">Fundamentals of Synthetic Data</a></strong><span class="who">Dr Ifty Khan</span></div></li>
+        <li class="break"><time>10:30–10:45</time><div>Break</div></li>
+        <li class="this"><time>10:45–12:00</time><div><strong><a href="methods.html">Methods for Generating Synthetic Data</a></strong><span class="who">Dr Saqib Ur Rehman. <a href="methods.html">Session content on this site</a></span></div></li>
+        <li class="break"><time>12:00–13:00</time><div>Lunch</div></li>
+        <li><time>13:00–14:00</time><div><strong><a href="regulatory.html">Regulatory Perspectives on Synthetic Data</a></strong><span class="who">MHRA perspective, with a response from RSS</span></div></li>
+        <li><time>14:00–15:30</time><div><strong><a href="ecliptica.html">Applications of Synthetic Data: Case Studies using Ecliptica</a></strong><span class="who">Introduction to Ecliptica, download and install; using Ecliptica for clinical trial simulation &amp; PK/PD; external control arms</span></div></li>
+        <li class="break"><time>15:30–15:45</time><div>Break</div></li>
+        <li><time>15:45–16:30</time><div><strong><a href="real-world.html">Applications of Synthetic Data</a></strong><span class="who">Real World Data: target trial emulation &amp; digital twins example; Health Technology Assessment for JCA</span></div></li>
+        <li><time>16:30–17:00</time><div><strong><a href="future.html">Future Directions and Discussion</a></strong></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="wrapper section-pad compact section-landmark ai-landmark full-bleed" id="next">
+  <div class="ai-compact-shell reveal">
+    <div class="ai-compact-copy">
+      <div class="section-identity inverse"><span class="identity-mark">06</span><span>Decision corner</span></div>
+      <p class="eyebrow">Method chooser</p>
+      <h2>Not sure which method fits your project?</h2>
+      <p>Answer four short questions about your purpose and your data. You get a starting method, alternatives, tools and the checks you will need.</p>
+      <div class="ai-use-cases" aria-label="What the chooser gives you">
+        <span>A starting method</span><span>What else to try</span><span>The checks you need</span>
+      </div>
+      <a class="btn primary" href="choose.html">Open the method chooser</a>
+    </div>
+    <div class="qr-compact" aria-hidden="true">
+      <div class="qr-frame"><b>4</b><small>questions</small></div>
+      <div><strong>About two minutes</strong><span>Then test yourself in Practice.</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrapper footer-grid">
+    <div>
+      <a class="brand" href="index.html"><span class="brand-mark">SD</span><span><strong>Synthetic Data</strong><small>in Health Research</small></span></a>
+      <p>Purpose → method → evaluation → documentation.</p>
+    </div>
+    <div><h4>Course companion</h4><p>Session 2: Methods for Generating Synthetic Data, Dr Saqib Ur Rehman.</p></div>
+    <div><h4>Hosted by</h4><p>Regulatory Scientific and Health Solutions (RSS)<br><a href="https://www.r-s-s.com">www.r-s-s.com</a></p></div>
+  </div>
+</footer>
+<script src="js/common.js"></script><script src="js/synth.js"></script><script src="js/hero.js"></script>
+</body>
+</html>
